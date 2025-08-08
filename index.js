@@ -55,17 +55,59 @@ class Board {
         ${this.boardSquares.A1} | ${this.boardSquares.A2} | ${this.boardSquares.A3}
         ${this.boardSquares.B1} | ${this.boardSquares.B2} | ${this.boardSquares.B3}
         ${this.boardSquares.C1} | ${this.boardSquares.C2} | ${this.boardSquares.C3}
-        `) 
+        `)
+        let result = ''
+        while(result == ''){
+            let playerSelection = player.select(options)
+            this.boardSquares[playerSelection] = 'X'
+            options = options.filter(item => item != playerSelection)
+            console.log("Your turn, choose a space!")
 
-        let playerSelection = player.select(options)
-        this.boardSquares[playerSelection] = 'X'
-        options = options.filter(item => item != playerSelection)
+            let computerSelection = computer.select(options)
+            this.boardSquares[computerSelection] = 'O'
+            options = options.filter(item => item != computerSelection)
 
-        let computerSelection = computer.select(options)
-        this.boardSquares[computerSelection] = 'O'
-        options = options.filter(item => item != computerSelection)
+            console.log(`
+                ${this.boardSquares.A1} | ${this.boardSquares.A2} | ${this.boardSquares.A3}
+                ${this.boardSquares.B1} | ${this.boardSquares.B2} | ${this.boardSquares.B3}
+                ${this.boardSquares.C1} | ${this.boardSquares.C2} | ${this.boardSquares.C3}
+                `)
 
-        return
+            result = this.winCons()
+            
+            if((options == '' || options.length == 0) && result == ''){
+                result = 'STALEMATE!!'
+            }
+        }
+        console.log(result)
+        return result
+        
+    }
+
+
+    winCons(){
+        if(this.boardSquares.A1 == 'X' && this.boardSquares.A2 == 'X' && this.boardSquares.A3 == 'X'
+            || this.boardSquares.B1 == 'X' && this.boardSquares.B2 == 'X' && this.boardSquares.B3 == 'X'
+            || this.boardSquares.C1 == 'X' && this.boardSquares.C2 == 'X' && this.boardSquares.C3 == 'X'
+            || this.boardSquares.A1 == 'X' && this.boardSquares.B1 == 'X' && this.boardSquares.C1 == 'X'
+            || this.boardSquares.A2 == 'X' && this.boardSquares.B2 == 'X' && this.boardSquares.C2 == 'X'
+            || this.boardSquares.A3 == 'X' && this.boardSquares.B3 == 'X' && this.boardSquares.C3 == 'X'
+            || this.boardSquares.A3 == 'X' && this.boardSquares.B2 == 'X' && this.boardSquares.C1 == 'X'
+            || this.boardSquares.A1 == 'X' && this.boardSquares.B2 == 'X' && this.boardSquares.C3 == 'X'
+        ){
+          return "PLAYER WINS!!"
+        }else if(this.boardSquares.A1 == 'O' && this.boardSquares.A2 == 'O' && this.boardSquares.A3 == 'O'
+            || this.boardSquares.B1 == 'O' && this.boardSquares.B2 == 'O' && this.boardSquares.B3 == 'O'
+            || this.boardSquares.C1 == 'O' && this.boardSquares.C2 == 'O' && this.boardSquares.C3 == 'O'
+            || this.boardSquares.A1 == 'O' && this.boardSquares.B1 == 'O' && this.boardSquares.C1 == 'O'
+            || this.boardSquares.A2 == 'O' && this.boardSquares.B2 == 'O' && this.boardSquares.C2 == 'O'
+            || this.boardSquares.A3 == 'O' && this.boardSquares.B3 == 'O' && this.boardSquares.C3 == 'O'
+            || this.boardSquares.A3 == 'O' && this.boardSquares.B2 == 'O' && this.boardSquares.C1 == 'O'
+            || this.boardSquares.A1 == 'O' && this.boardSquares.B2 == 'O' && this.boardSquares.C3 == 'O'){
+            return 'COMPUTER WINS!!'
+        }else{
+            return ''
+        }
     }
 
 }
