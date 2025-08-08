@@ -18,7 +18,7 @@ class Player {
 }
 
 class HumanPlayer extends Player{
-    constructor(name){
+    constructor(names){
 
     }
 }
