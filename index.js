@@ -66,6 +66,7 @@ class Board {
             let computerSelection = computer.select(options)
             this.boardSquares[computerSelection] = 'O'
             options = options.filter(item => item != computerSelection)
+            console.log(`Computer chose ${computerSelection}`)
 
             console.log(`
                 ${this.boardSquares.A1} | ${this.boardSquares.A2} | ${this.boardSquares.A3}
