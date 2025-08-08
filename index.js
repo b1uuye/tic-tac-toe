@@ -55,9 +55,16 @@ class Board {
         ${this.boardSquares.A1} | ${this.boardSquares.A2} | ${this.boardSquares.A3}
         ${this.boardSquares.B1} | ${this.boardSquares.B2} | ${this.boardSquares.B3}
         ${this.boardSquares.C1} | ${this.boardSquares.C2} | ${this.boardSquares.C3}
-        `)
+        `) 
+
         let playerSelection = player.select(options)
+        this.boardSquares[playerSelection] = 'X'
+        options = options.filter(item => item != playerSelection)
+
         let computerSelection = computer.select(options)
+        this.boardSquares[computerSelection] = 'O'
+        options = options.filter(item => item != computerSelection)
+
         return
     }
 
