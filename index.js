@@ -65,7 +65,6 @@ class Board {
         this.boardSquares[computerSelection] = 'O'
         options = options.filter(item => item != computerSelection)
 
-
         return
     }
 
